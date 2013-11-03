@@ -3,7 +3,7 @@ Package.describe({
 });
 
 Package.on_use(function (api, where) {
-  api.use(['collection-models']);
+  api.use(['mongo-livedata', 'collection-models']);
   
   api.add_files('collection-models-schemas.js', ['client', 'server']);
   

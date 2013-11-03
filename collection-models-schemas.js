@@ -1,4 +1,4 @@
-CollectionModel.schema = function(map) {
+Meteor.Collection.prototype.schema = function(map) {
   this._schema = map;
 }
 
@@ -7,8 +7,7 @@ var Message = function(pattern, message) {
   this.message = message;
 }
 
-// XXX: should we put this on the prototype too?
-CollectionModel.isValid = function(doc) {
+Meteor.Collection.prototype.isValid = function(doc) {
   return _.isEmpty(this.errors(doc));
 }
 
@@ -21,7 +20,7 @@ var typeToErrorMessage = function(type) {
   return "is wrong!";
 }
 
-CollectionModel.errorOn = function(doc, property) {
+Meteor.Collection.prototype.errorOn = function(doc, property) {
   var definition = this._schema[property];
   var pattern = definition;
   
@@ -32,7 +31,7 @@ CollectionModel.errorOn = function(doc, property) {
     return typeToErrorMessage(definition);
 }
 
-CollectionModel.errors = function(doc) {
+Meteor.Collection.prototype.errors = function(doc) {
   var self = this, errors = {};
   _.each(this._schema, function(definition, property) {
     var error = self.errorOn(doc, property);

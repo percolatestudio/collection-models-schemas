@@ -1,10 +1,9 @@
-Post = CollectionModel.extend({
-});
+Post = CollectionModel.extend({});
 
-Post.schema({
+Posts = new Meteor.Collection('posts', Post.getTransformOptions());
+
+Posts.schema({
   title: String,
   body: Validator.Message(String, "is all wrong, dude")
 });
-
-Posts = new Meteor.Collection('posts', Post.getTransformOptions());
 
