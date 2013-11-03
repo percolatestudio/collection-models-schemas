@@ -1,0 +1,4 @@
+To run this, for now, use mrt link-package:
+
+mrt link-package /path/to/collection-models
+mrt link-package /path/to/collection-models-schema
