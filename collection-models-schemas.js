@@ -11,13 +11,27 @@ Meteor.Collection.prototype.isValid = function(doc) {
   return _.isEmpty(this.errors(doc));
 }
 
+var typeToString = function(type) {
+  if (type === String)
+    return 'string';
+  else if (type === Number)
+    return 'number'
+  else if (type === Boolean)
+    return 'boolean'
+  else if (_.isArray(type))
+    return 'array of ' + typeToString(type[0]) + 's';
+  // XXX: fill out
+  else
+    return 'something'
+}
+
+
 var typeToErrorMessage = function(type) {
   if (type instanceof Message) 
     return type.message;
-  else if (type === String)
-    return 'must be a string!';
-  
-  return "is wrong!";
+  // XXX: are there other things?
+  else
+    return 'must be a ' + typeToString(type)
 }
 
 Meteor.Collection.prototype.errorOn = function(doc, property) {
